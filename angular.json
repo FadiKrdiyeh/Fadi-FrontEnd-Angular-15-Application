@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "fadi",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,9 +30,19 @@
               "src/assets"
             ],
             "styles": [
+              "@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "@fortawesome/fontawesome-free/scss/brands.scss",
+              "@fortawesome/fontawesome-free/scss/regular.scss",
+              "@fortawesome/fontawesome-free/scss/solid.scss",
+              "@fortawesome/fontawesome-free/scss/v4-shims.scss",
+              "./node_modules/bootstrap/scss/bootstrap.scss",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,6 +103,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
