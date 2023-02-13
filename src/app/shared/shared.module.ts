@@ -4,6 +4,7 @@ import { HeaderComponent } from './../core/header/header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -21,7 +22,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     CommonModule,
     HeaderComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MatButtonModule
   ]
 })
 export class SharedModule { }

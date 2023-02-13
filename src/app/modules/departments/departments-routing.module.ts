@@ -1,3 +1,4 @@
+import { DeleteDepartmentComponent } from './pages/delete-department/delete-department.component';
 import { DetailsDepartmentComponent } from './pages/details-department/details-department.component';
 import { ListDepartmentsComponent } from './pages/list-departments/list-departments.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ const routes: Routes = [
     children: [
       { path: "details/:id", component: DetailsDepartmentComponent },
       { path: "add", component: AddEditDepartmentComponent },
-      { path: "edit/:id", component: AddEditDepartmentComponent }
+      { path: "edit/:id", component: AddEditDepartmentComponent },
+      { path: "delete/:id", component: DeleteDepartmentComponent }
     ]
   }
 ];

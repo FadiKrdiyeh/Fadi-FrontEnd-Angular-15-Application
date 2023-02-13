@@ -1,2 +1,24 @@
 <p>list-departments works!</p>
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+
+<!-- <button mat-raised-button color="primary" routerLink="add">Create</button> -->
+<button class="btn btn-primary" routerLink="add">
+  Create <i class="fas fa-plus ms-2"></i>
+</button>
+<button class="btn btn-info ms-3" [routerLink]="['details', '2']">
+  Details <i class="fas fa-info ms-2"></i>
+</button>
+<button class="btn btn-warning ms-3" [routerLink]="['edit', '2']">
+  Edit <i class="fas fa-edit ms-2"></i>
+</button>
+<button class="btn btn-danger ms-3" [routerLink]="['delete', '2']">
+  Delete <i class="fas fa-trash ms-2"></i>
+</button>
+<div
+  class="child-outlet departments-outlet"
+  [@routing]="
+    departmentsOutletRef.isActivated ? departmentsOutletRef.activatedRoute : ''
+  "
+>
+  <router-outlet #departmentsOutletRef="outlet"></router-outlet>
+</div>

@@ -5,13 +5,15 @@ import { DepartmentsRoutingModule } from './departments-routing.module';
 import { DetailsDepartmentComponent } from './pages/details-department/details-department.component';
 import { ListDepartmentsComponent } from './pages/list-departments/list-departments.component';
 import { AddEditDepartmentComponent } from './pages/add-edit-department/add-edit-department.component';
+import { DeleteDepartmentComponent } from './pages/delete-department/delete-department.component';
 
 
 @NgModule({
   declarations: [
     AddEditDepartmentComponent,
     DetailsDepartmentComponent,
-    ListDepartmentsComponent
+    ListDepartmentsComponent,
+    DeleteDepartmentComponent
   ],
   imports: [
     CommonModule,
