@@ -33,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // To work with reactive forms
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -40,7 +41,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     RouterModule,
@@ -51,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
+    LoadingComponent,
     HttpClientModule,
     ReactiveFormsModule,
     MatButtonModule,

@@ -1,0 +1,130 @@
+// @keyframes bouncing {
+//   0% {
+//     top: 40%;
+//   }
+//   100% {
+//     top: 30%;
+//   }
+// }
+
+// @keyframes fadein {
+//   0% {
+//     opacity: 0;
+//   }
+
+//   100% {
+//     opacity: 1;
+//   }
+// }
+
+.page-overlay-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  z-index: 1009;
+  background: rgba(0, 0, 0, 0.5);
+
+  // .bee-spinner {
+  //   width: 20%;
+  //   height: 100%;
+  //   position: fixed;
+  //   top: 40%;
+  //   left: calc(50% - 10%);
+  //   z-index: 100;
+  //   background-image: url(../../../../assets/bee.png);
+  //   background-repeat: no-repeat;
+  //   background-size: 97%;
+  //   animation: bouncing 0.4s cubic-bezier(0.1, 0.25, 0.1, 1) 0s infinite
+  //     alternate both;
+  // }
+}
+
+
+
+
+
+$color-1: white;
+$color-2: purple;
+$color-3: blue;
+$color-4: green;
+$color-5: yellow;
+$color-6: orange;
+$color-7: red;
+
+$line-count: 7;
+$size: 12rem;
+$border: $size * 0.05;
+$borderCount: $border;
+$deg: 45deg;
+
+@mixin rainbow-color($i) {
+  @if ($i == 7) {
+    border-top-color: $color-1;
+    border-left-color: $color-1;
+  }
+  @if ($i == 6) {
+    border-top-color: $color-2;
+    border-left-color: $color-2;
+  }
+  @if ($i == 5) {
+    border-top-color: $color-3;
+    border-left-color: $color-3;
+  }
+  @if ($i == 4) {
+    border-top-color: $color-4;
+    border-left-color: $color-4;
+  }
+  @if ($i == 3) {
+    border-top-color: $color-5;
+    border-left-color: $color-5;
+  }
+  @if ($i == 2) {
+    border-top-color: $color-6;
+    border-left-color: $color-6;
+  }
+  @if ($i == 1) {
+    border-top-color: $color-7;
+    border-left-color: $color-7;
+  }
+}
+.loader-container {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+  .rainbow {
+    position: relative;
+    height: $size;
+    width: $size;
+    .line {
+      position: absolute;
+      transform: rotate($deg)
+    }
+  }
+}
+@for $i from 1 through $line-count {
+  .line:nth-child(#{$i}) {
+    animation: 1.4s rotate ($i / 18 + 0.1s) ease-in-out infinite;
+    width: $size - ($border * 2);
+    height: $size - ($border * 2);
+    top: $borderCount;
+    left: $borderCount;
+    border: $border solid transparent;
+    border-radius: 50%;
+    @include rainbow-color($i);
+    $size: $size - ($border * 2);
+    $borderCount: $borderCount + $border;
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate($deg)
+  }
+  50% {
+    transform: rotate($deg + 360)
+  }
+  100% {
+    transform: rotate($deg + 720)
+  }
+}

@@ -32,9 +32,9 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
   getEmployees () {
     this._employeeService.getEmployees$().subscribe({
       next: (data) => {
-        console.log(data);
-        console.log(data.value);
-        console.log(data.status);
+        // console.log(data);
+        // console.log(data.value);
+        // console.log(data.status);
         if (data.status) {
           this.dataEmployee.data = data.value;
         }
