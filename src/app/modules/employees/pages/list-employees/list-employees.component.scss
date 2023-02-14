@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+  // background-color: rgb(32, 32, 32);
+  // color: #fff !important;
+}
+
+table th {
+  background-color: rgb(32, 32, 32);
+  color: #fff;
+}
+table th,
+table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+}

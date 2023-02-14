@@ -6,6 +6,7 @@ import { DetailsDepartmentComponent } from './pages/details-department/details-d
 import { ListDepartmentsComponent } from './pages/list-departments/list-departments.component';
 import { AddEditDepartmentComponent } from './pages/add-edit-department/add-edit-department.component';
 import { DeleteDepartmentComponent } from './pages/delete-department/delete-department.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DeleteDepartmentComponent } from './pages/delete-department/delete-depa
   ],
   imports: [
     CommonModule,
-    DepartmentsRoutingModule
+    DepartmentsRoutingModule,
+    SharedModule
   ]
 })
 export class DepartmentsModule { }

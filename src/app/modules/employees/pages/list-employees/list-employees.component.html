@@ -1,6 +1,6 @@
-<p>list-employees works!</p>
+<!-- <p>list-employees works!</p> -->
 <!-- <button mat-raised-button color="primary" routerLink="add">Create</button> -->
-<button class="btn btn-primary" routerLink="add">
+<!-- <button class="btn btn-primary" routerLink="add">
   Create <i class="fas fa-plus ms-2"></i>
 </button>
 <button class="btn btn-info ms-3" [routerLink]="['details', '2']">
@@ -19,4 +19,99 @@
   "
 >
   <router-outlet #employeesOutletRef="outlet"></router-outlet>
+</div> -->
+
+<div class="container mt-5">
+  <h1>List Employees</h1>
+  <button mat-raised-button color="primary">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Plus icon"
+      fontIcon="add"
+    ></mat-icon>
+    New Employee
+  </button>
+
+  <mat-form-field appearance="fill" class="w-100 mt-3">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Filter employees..."
+      #filterInputRef
+    />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table
+      class="table table-hover"
+      mat-table
+      [dataSource]="dataEmployee"
+      matSort
+    >
+      <ng-container matColumnDef="FirstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Department">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+        <td mat-cell *matCellDef="let row">{{ row.departmentName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+        <td mat-cell *matCellDef="let row">{{ row.address }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Salary">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
+        <td mat-cell *matCellDef="let row">{{ row.salary }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <td mat-cell *matCellDef="let row">{{ row.phone }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Edit icon"
+              fontIcon="edit"
+            ></mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Delete icon"
+              fontIcon="delete"
+            ></mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">
+          No data matching the filter "{{ filterInputRef.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of employees"
+    ></mat-paginator>
+  </div>
 </div>
