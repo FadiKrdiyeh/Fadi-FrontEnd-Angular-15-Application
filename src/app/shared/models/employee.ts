@@ -1,10 +1,10 @@
 export interface Employee {
-  EmployeeId: string;
-  FirstName: string;
-  LastName: string;
-  Address: string;
-  Phone: string;
-  Salary: string;
-  FDepartmentId: number;
-  DepartmentName: string;
+  employeeId: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  phone: string;
+  salary: string;
+  fDepartmentId: number;
+  departmentName?: string;
 }

@@ -23,11 +23,12 @@
 
 <div class="container mt-5">
   <h1>List Employees</h1>
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" (click)="addNewEmployee()">
     <mat-icon
       aria-hidden="false"
       aria-label="Plus icon"
       fontIcon="add"
+      mat-list-icon
     ></mat-icon>
     New Employee
   </button>

@@ -1,1 +1,83 @@
-<p>add-edit-employee works!</p>
+<h2 mat-dialog-title>{{ action }} Employee</h2>
+<mat-dialog-content>
+  <form [formGroup]="employeeForm">
+    <mat-grid-list cols="1" rowHeight="80px">
+      <mat-grid-tile appearance="outline">
+        <mat-form-field>
+          <mat-label>First Name:</mat-label>
+          <input matInput autocomplete="off" formControlName="firstName" />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="outline">
+        <mat-form-field>
+          <mat-label>Last Name:</mat-label>
+          <input matInput autocomplete="off" formControlName="lastName" />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile appearance="outline">
+        <mat-form-field>
+          <mat-label>Department:</mat-label>
+          <mat-select formControlName="departmentId">
+            <mat-option
+              *ngFor="let department of departmentsList"
+              [value]="department.departmentId"
+              >{{ department.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Address:</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Salary:</mat-label>
+          <input matInput formControlName="salary" />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Phone:</mat-label>
+          <input matInput formControlName="phone" />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Hire Date:</mat-label>
+          <input
+            matInput
+            [matDatepicker]="hireDatePicker"
+            formControlName="hireDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="hireDatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #hireDatePicker></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile> -->
+    </mat-grid-list>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button
+    mat-raised-button
+    mat-dialog-close
+    color="primary"
+    [disabled]="employeeForm.invalid"
+    (click)="addEditEmployee()"
+  >
+    {{ actionButton }}
+  </button>
+</mat-dialog-actions>

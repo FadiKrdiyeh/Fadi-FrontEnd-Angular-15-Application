@@ -14,7 +14,7 @@ export class DepartmentService {
 
   constructor(private _httpClient: HttpClient) {
     this._endPoint = env.endpoint;
-    this._departmentApiUrl = `${ this._endPoint }api/department"`;
+    this._departmentApiUrl = `${ this._endPoint }api/department`;
   }
 
   getDepartments$ (): Observable<ApiResponse> {
