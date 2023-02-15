@@ -7,8 +7,8 @@ import { Department } from '../../../../shared/models/department';
 import { Employee } from '../../../../shared/models/employee';
 import { DepartmentService } from '../../../../core/services/department.service';
 import { EmployeeService } from '../../../../core/services/employee.service';
-import * as moment from 'moment';
-import { ThisReceiver } from '@angular/compiler';
+// import * as moment from 'moment';
+// import { ThisReceiver } from '@angular/compiler';
 
 export const MY_DATE_FORMATE = {
   parse: {
@@ -30,7 +30,7 @@ export const MY_DATE_FORMATE = {
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATE }
   ]
 })
-export class AddEditEmployeeComponent {
+export class AddEditEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   action: string;
   actionButton: string;
@@ -68,7 +68,7 @@ export class AddEditEmployeeComponent {
 
   addEditEmployee () {
     const employee: Employee = {
-      employeeId: "00000000-0000-0000-0000-000000000000",
+      employeeId: this.employeeData == null ? "00000000-0000-0000-0000-000000000000" : this.employeeData.employeeId,
       firstName: this.employeeForm.value.firstName,
       lastName: this.employeeForm.value.lastName,
       address: this.employeeForm.value.address,
@@ -79,17 +79,31 @@ export class AddEditEmployeeComponent {
     };
     // console.log(employee);
 
-    this._employeeService.addEmployee$(employee).subscribe({
-      next: (data) => {
-        if (data.status) {
-          this.showAlert("Employee created successfully", "Success!");
-          this._matDialogRef.close('created');
-        } else {
-          this.showAlert("Could not add employee", "Error!");
-        }
-      },
-      error: (error) => {}
-    })
+    if (this.employeeData == null) {
+      this._employeeService.addEmployee$(employee).subscribe({
+        next: (data) => {
+          if (data.status) {
+            this.showAlert("Employee created successfully", "Success!");
+            this._matDialogRef.close('created');
+          } else {
+            this.showAlert("Could not add employee", "Error!");
+          }
+        },
+        error: (error) => {}
+      });
+    } else {
+      this._employeeService.editEmployee$(employee).subscribe({
+        next: (data) => {
+          if (data.status) {
+            this.showAlert("Employee updated successfully", "Success!");
+            this._matDialogRef.close('edited');
+          } else {
+            this.showAlert("Could not add employee", "Error!");
+          }
+        },
+        error: (error) => {}
+      });
+    }
   }
 
   showAlert (message: string, title: string) {
@@ -98,5 +112,22 @@ export class AddEditEmployeeComponent {
       verticalPosition: 'bottom',
       duration: 5000
     })
+  }
+
+  ngOnInit(): void {
+    if (this.employeeData) {
+      this.employeeForm.patchValue({
+        firstName: this.employeeData.firstName,
+        lastName: this.employeeData.lastName,
+        address: this.employeeData.address,
+        salary: this.employeeData.salary,
+        phone: this.employeeData.phone,
+        departmentId: this.employeeData.fDepartmentId
+        // hireDate: moment(this.employeeData.hireDate, 'DD/MM/YYYY')
+      });
+
+      this.action = 'Edit';
+      this.actionButton = 'Update';
+    }
   }
 }

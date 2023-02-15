@@ -1,1 +1,31 @@
-<p>delete-employee works!</p>
+<h1 mat-dialog-title>Delete Employee</h1>
+
+<div mat-dialog-content>
+  Are you sure to delete employee: "{{ deleteEmployee.firstName }}
+  {{ deleteEmployee.lastName }}"?
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>
+    No, cancel
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Close icon"
+      fontIcon="close"
+    ></mat-icon>
+  </button>
+  <!-- cdkFocusInitial -> the button will be focused, if press enter will trigger -->
+  <button
+    mat-raised-button
+    color="warn"
+    cdkFocusInitial
+    (click)="confirmDelete()"
+  >
+    Yes, delete
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Delete icon"
+      fontIcon="delete"
+    ></mat-icon>
+  </button>
+</div>

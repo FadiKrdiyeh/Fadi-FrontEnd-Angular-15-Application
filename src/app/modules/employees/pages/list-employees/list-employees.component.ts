@@ -1,3 +1,4 @@
+import { DeleteEmployeeComponent } from './../delete-employee/delete-employee.component';
 import { RoutingAnimation } from './../../../../shared/animations/routing.animation';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Employee } from '../../../../shared/models/employee';
@@ -8,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EmployeeService } from '../../../../core/services/employee.service';
 
 import { AddEditEmployeeComponent } from '../add-edit-employee/add-edit-employee.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'fadi-list-employees',
@@ -16,13 +18,13 @@ import { AddEditEmployeeComponent } from '../add-edit-employee/add-edit-employee
   animations: [RoutingAnimation]
 })
 export class ListEmployeesComponent implements OnInit, AfterViewInit {
-  title = 'Employees List';
   displayedColumns: string[];
   dataEmployee = new MatTableDataSource<Employee>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor (private _matSnackBar: MatSnackBar, private _employeeService: EmployeeService, private _matDialog: MatDialog) {
+  constructor (private _titleService: Title, private _matSnackBar: MatSnackBar, private _employeeService: EmployeeService, private _matDialog: MatDialog) {
+    this._titleService.setTitle("Employees");
     this.displayedColumns = ["FirstName", "LastName", "Department", "Address", "Salary", "Phone", "Actions"];
   }
 
@@ -63,6 +65,50 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
       if (result === 'created') {
         this.getEmployees();
       }
+    })
+  }
+
+  editEmployee (employee: Employee) {
+    this._matDialog.open(AddEditEmployeeComponent, {
+      disableClose: true,
+      data: employee,
+      width: '400px'
+    }).afterClosed().subscribe(result => {
+      // console.log(result);
+
+      if (result === 'edited') {
+        this.getEmployees();
+      }
+    })
+  }
+
+  deleteEmployee (employee: Employee) {
+    this._matDialog.open(DeleteEmployeeComponent, {
+      disableClose: true,
+      data: employee,
+    }).afterClosed().subscribe(result => {
+      // console.log(employeeId);
+
+      if (result === 'delete') {
+        this._employeeService.deleteEmployee$(employee.employeeId).subscribe({
+          next: (data) => {
+            if (data.status) {
+              this.showAlert("Employee deleted successfully.", "Success!");
+              this.getEmployees();
+            } else {
+              this.showAlert("Could not delete employee.", "Error!");
+            }
+          }
+        })
+      }
+    })
+  }
+
+  showAlert (message: string, title: string) {
+    this._matSnackBar.open(message, title, {
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+      duration: 5000
     })
   }
 }

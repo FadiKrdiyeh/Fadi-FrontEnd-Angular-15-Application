@@ -2,22 +2,22 @@
 <mat-dialog-content>
   <form [formGroup]="employeeForm">
     <mat-grid-list cols="1" rowHeight="80px">
-      <mat-grid-tile appearance="outline">
-        <mat-form-field>
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
           <mat-label>First Name:</mat-label>
           <input matInput autocomplete="off" formControlName="firstName" />
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile appearance="outline">
-        <mat-form-field>
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
           <mat-label>Last Name:</mat-label>
           <input matInput autocomplete="off" formControlName="lastName" />
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile appearance="outline">
-        <mat-form-field>
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
           <mat-label>Department:</mat-label>
           <mat-select formControlName="departmentId">
             <mat-option
@@ -30,21 +30,21 @@
       </mat-grid-tile>
 
       <mat-grid-tile>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Address:</mat-label>
           <input matInput formControlName="address" />
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Salary:</mat-label>
           <input matInput formControlName="salary" />
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Phone:</mat-label>
           <input matInput formControlName="phone" />
         </mat-form-field>
@@ -70,7 +70,14 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button mat-dialog-close color="warn">
+    Cancel
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Close icon"
+      fontIcon="close"
+    ></mat-icon>
+  </button>
   <button
     mat-raised-button
     mat-dialog-close
@@ -79,5 +86,10 @@
     (click)="addEditEmployee()"
   >
     {{ actionButton }}
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Rocket launch icon"
+      fontIcon="rocket_launch"
+    ></mat-icon>
   </button>
 </mat-dialog-actions>

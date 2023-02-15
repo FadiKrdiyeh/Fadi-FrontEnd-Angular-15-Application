@@ -7,6 +7,7 @@ import { ListDepartmentsComponent } from './pages/list-departments/list-departme
 import { AddEditDepartmentComponent } from './pages/add-edit-department/add-edit-department.component';
 import { DeleteDepartmentComponent } from './pages/delete-department/delete-department.component';
 import { SharedModule } from '../../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     DepartmentsRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class DepartmentsModule { }
