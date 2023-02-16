@@ -9,6 +9,8 @@ import { DeleteDepartmentComponent } from './pages/delete-department/delete-depa
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     DepartmentsRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ]
 })
 export class DepartmentsModule { }

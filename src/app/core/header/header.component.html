@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Fadi Krdiyeh</a>
     <button
@@ -65,4 +65,85 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
+
+<!-- <mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="toolbar-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar> -->
+
+<mat-toolbar color="primary">
+  <!-- <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button> -->
+  <span class="me-5">Fadi Krdiyeh</span>
+
+  <a class="mx-2" mat-button routerLink="home" routerLinkActive="active">
+    <mat-icon>home</mat-icon>
+    Home
+  </a>
+  <a class="mx-2" mat-button routerLink="employee" routerLinkActive="active">
+    <mat-icon>groups</mat-icon>
+    Employees
+  </a>
+  <a class="mx-2" mat-button routerLink="department" routerLinkActive="active">
+    <mat-icon>badge</mat-icon>
+    Departments
+  </a>
+
+  <span class="toolbar-spacer"></span>
+  <!-- <div class="flex-stretch"></div> -->
+
+  <mat-icon class="mx-2" *ngIf="!isOffline; else offlineIcon"
+    >signal_wifi_4_bars</mat-icon
+  >
+  <ng-template #offlineIcon
+    ><mat-icon class="mx-2" *ngIf="isOffline"
+      >signal_wifi_off</mat-icon
+    ></ng-template
+  >
+
+  <mat-icon class="ms-2">brightness_5</mat-icon>
+  <mat-slide-toggle [formControl]="toggleControl" class="mx-1">
+  </mat-slide-toggle>
+  <mat-icon class="me-2">bedtime</mat-icon>
+
+  <button mat-button class="mx-2">
+    Ar
+    <mat-icon>language</mat-icon>
+  </button>
+
+  <span class="mx-2 d-flex align-items-center" *ngIf="false">
+    Username
+    <button mat-icon-button>
+      <mat-icon>logout</mat-icon>
+    </button>
+  </span>
+
+  <button mat-button [matMenuTriggerFor]="beforeMenu">
+    <mat-icon>person</mat-icon>
+    Account
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item>Login</button>
+    <button mat-menu-item>Register</button>
+  </mat-menu>
+</mat-toolbar>

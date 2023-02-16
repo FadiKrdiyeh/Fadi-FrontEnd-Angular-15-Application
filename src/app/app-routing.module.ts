@@ -1,9 +1,11 @@
+import { HomeComponent } from './core/home/home.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: "", redirectTo: "account/login", pathMatch: "full" },
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "home", component: HomeComponent },
   { path: "account", loadChildren: () => import('@modules/accounts/accounts.module').then(module => module.AccountsModule) },
   { path: "department", loadChildren: () => import('@modules/departments/departments.module').then(module => module.DepartmentsModule) },
   { path: "employee", loadChildren: () => import('@modules/employees/employees.module').then(module => module.EmployeesModule) },

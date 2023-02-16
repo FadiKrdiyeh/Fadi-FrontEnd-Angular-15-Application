@@ -1,1 +1,24 @@
-<p>delete-department works!</p>
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  <h1 mat-dialog-title>Delete Department</h1>
+
+  <mat-dialog-content>
+    <div>Are you sure to delete employee: "{{ deleteDepartment.name }}"?</div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>
+      No, cancel
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <button
+      mat-raised-button
+      color="warn"
+      cdkFocusInitial
+      (click)="confirmDelete()"
+    >
+      Yes, delete
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>

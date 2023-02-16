@@ -76,7 +76,11 @@
               fontIcon="edit"
             ></mat-icon>
           </button>
-          <button mat-icon-button color="warn">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteDepartment(department)"
+          >
             <mat-icon
               aria-hidden="false"
               aria-label="Delete icon"

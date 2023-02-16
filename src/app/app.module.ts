@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { DepartmentsModule } from './modules/departments/departments.module';
 import { EmployeesModule } from './modules/employees/employees.module';
 import { SharedModule } from './shared/shared.module';
@@ -21,7 +22,8 @@ import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor
     BrowserAnimationsModule,
     SharedModule,
     EmployeesModule,
-    DepartmentsModule
+    DepartmentsModule,
+    CoreModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }

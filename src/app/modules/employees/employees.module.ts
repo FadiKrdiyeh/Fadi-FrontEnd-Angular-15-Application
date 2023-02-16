@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,8 @@ import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee
   imports: [
     CommonModule,
     EmployeesRoutingModule,
-    SharedModule
+    SharedModule,
+    DragDropModule
   ]
 })
 export class EmployeesModule { }

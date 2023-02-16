@@ -17,6 +17,7 @@ export class AddEditDepartmentComponent implements OnInit {
   departmentName: string;
   action: string;
   actionButton: string;
+  // dragPosition = { x: 0, y: 0 };
 
   constructor (private _departmentService: DepartmentService, private _matSnackBar: MatSnackBar, private _matDialogRef: MatDialogRef<AddEditDepartmentComponent>, @Inject(MAT_DIALOG_DATA) public departmentData: Department) {
     this.departmentId = 0;

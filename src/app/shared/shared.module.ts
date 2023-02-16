@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // Shared components
-import { FooterComponent } from './../core/footer/footer.component';
 import { HeaderComponent } from './../core/header/header.component';
+import { FooterComponent } from './../core/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 // To work with Material
@@ -27,6 +27,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 //For Grids
 import { MatGridListModule } from '@angular/material/grid-list';
+//For Toolbar
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { MatMenuModule } from '@angular/material/menu';
+
+import { MatDividerModule } from '@angular/material/divider';
 
 // To work with http requests
 import { HttpClientModule } from '@angular/common/http';
@@ -46,7 +54,15 @@ import { LoadingComponent } from './components/loading/loading.component';
   ],
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatDividerModule
   ],
   exports: [
     CommonModule,
@@ -68,7 +84,10 @@ import { LoadingComponent } from './components/loading/loading.component';
     MatDialogModule,
     MatGridListModule,
     MatSnackBarModule,
-    MomentDateModule
+    MomentDateModule,
+    MatToolbarModule,
+    MatSlideToggleModule,
+    MatMenuModule
   ]
 })
 export class SharedModule { }

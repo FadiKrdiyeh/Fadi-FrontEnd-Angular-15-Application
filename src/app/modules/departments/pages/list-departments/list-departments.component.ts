@@ -1,3 +1,5 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteDepartmentComponent } from './../delete-department/delete-department.component';
 import { AddEditDepartmentComponent } from './../add-edit-department/add-edit-department.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentService } from './../../../../core/services/department.service';
@@ -20,7 +22,7 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor (private _titleService: Title, private departmentService: DepartmentService, private _matDialog: MatDialog) {
+  constructor (private _titleService: Title, private _departmentService: DepartmentService, private _matDialog: MatDialog, private _matSnackBar: MatSnackBar) {
     this._titleService.setTitle('Departments');
     this.displayedColumns = ["Id", "Name", "Actions"];
   }
@@ -31,7 +33,7 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
   }
 
   getDepartments () {
-    this.departmentService.getDepartments$().subscribe({
+    this._departmentService.getDepartments$().subscribe({
       next: (data) => {
         if (data.status) {
           this.dataDepartments.data = data.value;
@@ -64,6 +66,27 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  deleteDepartment(deparment: Department) {
+    this._matDialog.open(DeleteDepartmentComponent, {
+      disableClose: true,
+      data: deparment
+    }).afterClosed().subscribe(result => {
+      if (result == 'delete') {
+        this._departmentService.deleteDepartment$(deparment.departmentId).subscribe({
+          next: (data) => {
+            if (data.status) {
+              this.showAlert("Department deleted successfully.", "Success!");
+              this.getDepartments();
+            } else {
+              this.showAlert("Could not delete department.", "Error!");
+            }
+          },
+          error(error) {},
+        })
+      }
+    })
+  }
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -74,5 +97,13 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.dataDepartments.paginator = this.paginator;
+  }
+
+  showAlert (message: string, title: string) {
+    this._matSnackBar.open(message, title, {
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+      duration: 5000
+    })
   }
 }

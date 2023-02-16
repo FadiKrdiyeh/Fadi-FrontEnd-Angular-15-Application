@@ -1,0 +1,23 @@
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  &::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+  &.active::after {
+    width: 90%;
+  }
+}

@@ -1,6 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
 html, body { height: 100%; }
 body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
   // background-color: rgb(32, 32, 32); color: #fff;
-  min-height: calc(100vh - 102px); }
+  min-height: calc(100vh - 114px); }
+
+
+@import "@angular/material/theming";
+
+@include mat.core();
+
+// $angular-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900);
+$angular-primary: mat.define-palette(mat.$indigo-palette, 500);
+$angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$angular-warn: mat.define-palette(mat.$red-palette);
+
+$angular-default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $angular-primary,
+      accent: $angular-accent,
+      warn: $angular-warn,
+      ),
+      )
+      );
+
+@include mat.all-component-themes($angular-default-theme);
+
+// -------------------------------------------------------
+
+$angular-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $angular-primary,
+      accent: $angular-accent,
+      warn: $angular-warn,
+    ),
+  )
+);
+
+.darkMode {
+  @include mat.all-component-colors($angular-dark-theme);
+}
