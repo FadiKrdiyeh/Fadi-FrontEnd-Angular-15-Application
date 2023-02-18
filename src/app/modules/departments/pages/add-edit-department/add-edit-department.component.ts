@@ -47,7 +47,9 @@ export class AddEditDepartmentComponent implements OnInit {
             this.showAlert("Could not update department.", "Error!");
           }
         },
-        error(error) {},
+        error: (error) => {
+          this.showAlert("Could not update department.", "Error!");
+        }
       })
     } else {
       this._departmentService.addDepartment$(department).subscribe({
@@ -59,7 +61,9 @@ export class AddEditDepartmentComponent implements OnInit {
             this.showAlert("Could not create department", "Error!");
           }
         },
-        error(error) {},
+        error: (error) => {
+          this.showAlert("Could not create department.", "Error!");
+        }
       })
     }
   }

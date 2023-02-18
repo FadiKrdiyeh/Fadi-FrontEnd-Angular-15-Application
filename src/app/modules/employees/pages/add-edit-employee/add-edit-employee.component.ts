@@ -62,7 +62,9 @@ export class AddEditEmployeeComponent implements OnInit {
           this.departmentsList = data.value;
         }
       },
-      error: (error) => {}
+      error: (error) => {
+        this.showAlert("Could not load employees.", "Error!");
+      }
     })
   }
 
@@ -89,7 +91,9 @@ export class AddEditEmployeeComponent implements OnInit {
             this.showAlert("Could not add employee", "Error!");
           }
         },
-        error: (error) => {}
+        error: (error) => {
+          this.showAlert("Could not add employee.", "Error!");
+        }
       });
     } else {
       this._employeeService.editEmployee$(employee).subscribe({
@@ -98,10 +102,12 @@ export class AddEditEmployeeComponent implements OnInit {
             this.showAlert("Employee updated successfully", "Success!");
             this._matDialogRef.close('edited');
           } else {
-            this.showAlert("Could not add employee", "Error!");
+            this.showAlert("Could not update employee", "Error!");
           }
         },
-        error: (error) => {}
+        error: (error) => {
+          this.showAlert("Could not update employee.", "Error!");
+        }
       });
     }
   }

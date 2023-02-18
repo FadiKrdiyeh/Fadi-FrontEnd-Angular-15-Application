@@ -44,7 +44,9 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
           this.dataEmployee.data = data.value;
         }
       },
-      error: (e) => {}
+      error: (error) => {
+        this.showAlert("Could not load employees.", "Error!");
+      }
     });
   }
 
@@ -111,6 +113,9 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
             } else {
               this.showAlert("Could not delete employee.", "Error!");
             }
+          },
+          error: (error) => {
+            this.showAlert("Could not delete employee.", "Error!");
           }
         })
       }

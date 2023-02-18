@@ -28,6 +28,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // To work with http requests
 import { HttpClientModule } from '@angular/common/http';
@@ -81,7 +82,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     MatToolbarModule,
     MatSlideToggleModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ]
 })
 export class SharedModule { }

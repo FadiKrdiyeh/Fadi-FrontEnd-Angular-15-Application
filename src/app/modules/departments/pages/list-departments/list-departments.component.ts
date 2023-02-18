@@ -40,7 +40,9 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
           this.dataDepartments.data = data.value;
         }
       },
-      error(error) {},
+      error: (error) => {
+        this.showAlert("Could not load departments.", "Error!");
+      }
     });
   }
 
@@ -94,7 +96,9 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
               this.showAlert("Could not delete department.", "Error!");
             }
           },
-          error(error) {},
+          error: (error) => {
+            this.showAlert("Could not delete department.", "Error!");
+          },
         })
       }
     })
