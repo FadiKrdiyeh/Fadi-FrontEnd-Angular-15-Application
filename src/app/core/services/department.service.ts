@@ -36,4 +36,8 @@ export class DepartmentService {
   deleteDepartment$ (departmentId: number): Observable<ApiResponse> {
     return this._httpClient.delete<ApiResponse>(`${ this._departmentApiUrl }/${ departmentId }`);
   }
+
+  countEmployees$ (departmentId: number): Observable<ApiResponse> {
+    return this._httpClient.get<ApiResponse>(`${this._departmentApiUrl}/count/${departmentId}`);
+  }
 }

@@ -1,3 +1,4 @@
+import { DetailsDepartmentComponent } from './../details-department/details-department.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteDepartmentComponent } from './../delete-department/delete-department.component';
 import { AddEditDepartmentComponent } from './../add-edit-department/add-edit-department.component';
@@ -50,6 +51,18 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     }).afterClosed().subscribe(result => {
       if (result == 'created') {
         this.getDepartments();
+      }
+    });
+  }
+
+  detailsDepartment (department: Department) {
+    this._matDialog.open(DetailsDepartmentComponent, {
+      disableClose: false,
+      data: department,
+      width: '500px'
+    }).afterClosed().subscribe(result => {
+      if (result == 'edit') {
+        this.editDepartment(department);
       }
     });
   }

@@ -1,1 +1,35 @@
-<p>details-department works!</p>
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  <h1 mat-dialog-title>Department Details</h1>
+  <mat-dialog-content>
+    <mat-card class="department-details-card">
+      <mat-card-header>
+        <mat-card-title>{{ departmentDetails.name }}</mat-card-title>
+        <mat-card-subtitle
+          >#{{ departmentDetails.departmentId }}</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Employees count in this department:
+          <span class="custom-badge">{{ employeesCount }}</span>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>
+      Close
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      cdkFocusInitial
+      (click)="editDepartment()"
+    >
+      Edit
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>

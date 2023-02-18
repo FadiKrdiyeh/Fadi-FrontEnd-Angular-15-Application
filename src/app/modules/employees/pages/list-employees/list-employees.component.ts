@@ -1,3 +1,4 @@
+import { DetailsEmployeeComponent } from './../details-employee/details-employee.component';
 import { DeleteEmployeeComponent } from './../delete-employee/delete-employee.component';
 import { RoutingAnimation } from './../../../../shared/animations/routing.animation';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
@@ -66,6 +67,18 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
         this.getEmployees();
       }
     })
+  }
+
+  detailsEmployee (employee: Employee) {
+    this._matDialog.open(DetailsEmployeeComponent, {
+      disableClose: false,
+      data: employee,
+      width: '600px'
+    }).afterClosed().subscribe(result => {
+      if (result == 'edit') {
+        this.editEmployee(employee);
+      }
+    });
   }
 
   editEmployee (employee: Employee) {

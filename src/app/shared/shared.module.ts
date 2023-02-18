@@ -19,22 +19,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
-// For alerts
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-//For Icons
 import { MatIconModule } from '@angular/material/icon';
-//For Modals
 import { MatDialogModule } from '@angular/material/dialog';
-//For Grids
 import { MatGridListModule } from '@angular/material/grid-list';
-//For Toolbar
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
 import { MatMenuModule } from '@angular/material/menu';
-
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 
 // To work with http requests
 import { HttpClientModule } from '@angular/common/http';
@@ -87,7 +80,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     MomentDateModule,
     MatToolbarModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule
   ]
 })
 export class SharedModule { }
