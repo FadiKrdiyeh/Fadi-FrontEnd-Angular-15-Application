@@ -1,0 +1,81 @@
+∇ app
+    ∇ core
+         ∇ authentication
+              authentication.service.ts
+         ∇ footer
+              footer.component.html|scss|ts
+         ∇ guards
+              authentication.guard.ts
+              logged-in.guard.ts
+         ∇ header
+              header.component.html|scss|ts
+         ∇ home
+              home.component.html|scss|ts
+         ∇ http
+         ∇ interceptors
+              http-error.interceptor.ts
+              http.interceptor.ts
+         ∇ mocks
+         ∇ services
+              department.service.ts
+              employee.service.ts
+              helpers.service.ts
+              loading.service.ts
+         core.module.ts
+    ∇ modules
+         ∇ account
+              ∇ components
+                   ∇ login
+                        login.component.html|scss|ts
+                   ∇ register
+                        register.component.html|scss|ts
+              ∇ pages
+                   ∇ login-register
+                        login-register.component.html|scss|ts
+              account-routing.module.ts
+              account.module.ts
+         ∇ departments
+              ∇ components
+                   ∇ add-edit-department
+                        add-edit-department.component.html|scss|ts
+                   ∇ delete-department
+                        delete-department.component.html|scss|ts
+                   ∇ details-department
+                        details-department.component.html|scss|ts
+              ∇ pages
+                   ∇ list-departments
+                        list-departments.component.html|scss|ts
+              departments-routing.module.ts
+              departments.module.ts
+         ∇ employees
+              ∇ components
+                   ∇ add-edit-employee
+                        add-edit-employee.component.html|scss|ts
+                   ∇ delete-employee
+                        delete-employee.component.html|scss|ts
+                   ∇ details-employee
+                        details-employee.component.html|scss|ts
+              ∇ pages
+                   ∇ list-employees
+                        list-employees.component.html|scss|ts
+              employees-routing.module.ts
+              employees.module.ts
+    ∇ shared
+         ∇ animations
+              loading.animation.ts
+              routing.animation.ts
+         ∇ components
+              ∇ loading
+                   loading.component.html|scss|ts
+              ∇ not-found
+                   not-found.component.html|scss|ts
+         ∇ directives
+         ∇ models
+              api-response.ts
+              credentials.ts
+              department.ts
+              employee.ts
+         shared.module.ts
+    app-routing.module.ts
+    app.component.html|scss|ts
+    app.module.ts
