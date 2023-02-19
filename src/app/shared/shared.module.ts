@@ -38,7 +38,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
 
 
-
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -83,7 +82,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     MatSlideToggleModule,
     MatMenuModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

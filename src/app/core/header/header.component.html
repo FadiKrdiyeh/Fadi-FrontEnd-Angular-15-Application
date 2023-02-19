@@ -130,20 +130,22 @@
     <mat-icon>language</mat-icon>
   </button>
 
-  <span class="mx-2 d-flex align-items-center" *ngIf="false">
+  <span class="mx-2 d-flex align-items-center" *ngIf="isUserAuthenticated()">
     Username
-    <button mat-icon-button>
+    <button mat-icon-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
   </span>
 
-  <button mat-button [matMenuTriggerFor]="beforeMenu">
-    <mat-icon>person</mat-icon>
-    Account
-    <mat-icon>arrow_drop_down</mat-icon>
-  </button>
-  <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item routerLink="/account/login">Login</button>
-    <button mat-menu-item routerLink="/account/register">Register</button>
-  </mat-menu>
+  <ng-container *ngIf="!isUserAuthenticated()">
+    <button mat-button [matMenuTriggerFor]="beforeMenu">
+      <mat-icon>person</mat-icon>
+      Account
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item routerLink="/account/login">Login</button>
+      <button mat-menu-item routerLink="/account/register">Register</button>
+    </mat-menu>
+  </ng-container>
 </mat-toolbar>

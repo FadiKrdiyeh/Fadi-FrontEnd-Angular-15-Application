@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DepartmentsRoutingModule } from './departments-routing.module';
-import { DetailsDepartmentComponent } from './pages/details-department/details-department.component';
+
 import { ListDepartmentsComponent } from './pages/list-departments/list-departments.component';
-import { AddEditDepartmentComponent } from './pages/add-edit-department/add-edit-department.component';
-import { DeleteDepartmentComponent } from './pages/delete-department/delete-department.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+
+import { AddEditDepartmentComponent } from './components/add-edit-department/add-edit-department.component';
+import { DetailsDepartmentComponent } from './components/details-department/details-department.component';
+import { DeleteDepartmentComponent } from './components/delete-department/delete-department.component';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 

@@ -1,10 +1,9 @@
-import { Department } from './../../../../shared/models/department';
+import { HelpersService } from '../../../../core/services/helpers.service';
+import { Department } from '../../../../shared/models/department';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DepartmentService } from './../../../../core/services/department.service';
+import { DepartmentService } from '../../../../core/services/department.service';
 // import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'fadi-add-edit-department',
@@ -19,7 +18,12 @@ export class AddEditDepartmentComponent implements OnInit {
   actionButton: string;
   // dragPosition = { x: 0, y: 0 };
 
-  constructor (private _departmentService: DepartmentService, private _matSnackBar: MatSnackBar, private _matDialogRef: MatDialogRef<AddEditDepartmentComponent>, @Inject(MAT_DIALOG_DATA) public departmentData: Department) {
+  constructor (
+    private _departmentService: DepartmentService,
+    private _matDialogRef: MatDialogRef<AddEditDepartmentComponent>,
+    @Inject(MAT_DIALOG_DATA) public departmentData: Department,
+    private _helpersService: HelpersService
+    ) {
     this.departmentId = 0;
     this.departmentName = '';
     this.action = "Add";
@@ -41,39 +45,31 @@ export class AddEditDepartmentComponent implements OnInit {
       this._departmentService.editDepartment$(department).subscribe({
         next: (data) => {
           if (data.status) {
-            this.showAlert("Department updated successfully.", "Success!");
+            this._helpersService.showAlert("Department updated successfully.", "Success!", 5000);
             this._matDialogRef.close("edited");
           } else {
-            this.showAlert("Could not update department.", "Error!");
+            this._helpersService.showAlert("Could not update department.", "Error!", 5000);
           }
         },
         error: (error) => {
-          this.showAlert("Could not update department.", "Error!");
+          this._helpersService.showAlert("Could not update department.", "Error!", 5000);
         }
       })
     } else {
       this._departmentService.addDepartment$(department).subscribe({
         next: (data) => {
           if (data.status) {
-            this.showAlert("Department created successfully.", "Success!")
+            this._helpersService.showAlert("Department created successfully.", "Success!", 5000)
             this._matDialogRef.close("created");
           } else {
-            this.showAlert("Could not create department", "Error!");
+            this._helpersService.showAlert("Could not create department", "Error!", 5000);
           }
         },
         error: (error) => {
-          this.showAlert("Could not create department.", "Error!");
+          this._helpersService.showAlert("Could not create department.", "Error!", 5000);
         }
       })
     }
-  }
-
-  showAlert (message: string, title: string) {
-    this._matSnackBar.open(message, title, {
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-      duration: 4000
-    })
   }
 
   ngOnInit(): void {

@@ -1,16 +1,17 @@
-import { DetailsEmployeeComponent } from './../details-employee/details-employee.component';
-import { DeleteEmployeeComponent } from './../delete-employee/delete-employee.component';
+import { ActivatedRoute } from '@angular/router';
+import { HelpersService } from './../../../../core/services/helpers.service';
 import { RoutingAnimation } from './../../../../shared/animations/routing.animation';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Employee } from '../../../../shared/models/employee';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeService } from '../../../../core/services/employee.service';
 
-import { AddEditEmployeeComponent } from '../add-edit-employee/add-edit-employee.component';
+import { AddEditEmployeeComponent } from '../../components/add-edit-employee/add-edit-employee.component';
 import { Title } from '@angular/platform-browser';
+import { DeleteEmployeeComponent } from '../../components/delete-employee/delete-employee.component';
+import { DetailsEmployeeComponent } from '../../components/details-employee/details-employee.component';
 
 @Component({
   selector: 'fadi-list-employees',
@@ -21,10 +22,17 @@ import { Title } from '@angular/platform-browser';
 export class ListEmployeesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[];
   dataEmployee = new MatTableDataSource<Employee>();
+  // dialog: string;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor (private _titleService: Title, private _matSnackBar: MatSnackBar, private _employeeService: EmployeeService, private _matDialog: MatDialog) {
+  constructor (
+    private _titleService: Title,
+    private _employeeService: EmployeeService,
+    private _matDialog: MatDialog,
+    private _helpersService: HelpersService,
+    private _activatedRoute: ActivatedRoute
+    ) {
     this._titleService.setTitle("Employees");
     this.displayedColumns = ["FirstName", "LastName", "Department", "Address", "Salary", "Phone", "Actions"];
   }
@@ -45,17 +53,9 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
         }
       },
       error: (error) => {
-        this.showAlert("Could not load employees.", "Error!");
+        this._helpersService.showAlert("Could not load employees.", "Error!", 5000);
       }
     });
-  }
-
-  ngOnInit(): void {
-    this.getEmployees();
-  }
-
-  ngAfterViewInit(): void {
-    this.dataEmployee.paginator = this.paginator;
   }
 
   addNewEmployee () {
@@ -108,25 +108,25 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
         this._employeeService.deleteEmployee$(employee.employeeId).subscribe({
           next: (data) => {
             if (data.status) {
-              this.showAlert("Employee deleted successfully.", "Success!");
+              this._helpersService.showAlert("Employee deleted successfully.", "Success!", 5000);
               this.getEmployees();
             } else {
-              this.showAlert("Could not delete employee.", "Error!");
+              this._helpersService.showAlert("Could not delete employee.", "Error!", 5000);
             }
           },
           error: (error) => {
-            this.showAlert("Could not delete employee.", "Error!");
+            this._helpersService.showAlert("Could not delete employee.", "Error!", 5000);
           }
         })
       }
     })
   }
 
-  showAlert (message: string, title: string) {
-    this._matSnackBar.open(message, title, {
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-      duration: 5000
-    })
+  ngOnInit(): void {
+    this.getEmployees();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataEmployee.paginator = this.paginator;
   }
 }

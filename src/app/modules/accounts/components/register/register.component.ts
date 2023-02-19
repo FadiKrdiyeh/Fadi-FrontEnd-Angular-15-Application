@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'fadi-register',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  username: string = '';
+  password: string = '';
+  fullName: string = '';
 
+  constructor () {}
+
+  register (registerForm: NgForm) {
+    console.log(registerForm);
+
+  }
 }

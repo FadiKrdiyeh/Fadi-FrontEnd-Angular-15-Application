@@ -2,7 +2,7 @@
   <fadi-header (themeEvent)="theme($any($event))"></fadi-header>
   <main
     [@routing]="outletRef.isActivated ? outletRef.activatedRoute : ''"
-    class="pt-3 pb-5 px-5"
+    class="pb-5 px-5"
   >
     <router-outlet #outletRef="outlet"></router-outlet>
   </main>

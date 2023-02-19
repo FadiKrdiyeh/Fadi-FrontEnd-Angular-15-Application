@@ -1,7 +1,7 @@
+import { HelpersService } from '../../../../core/services/helpers.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { Department } from '../../../../shared/models/department';
 import { Employee } from '../../../../shared/models/employee';
@@ -40,9 +40,9 @@ export class AddEditEmployeeComponent implements OnInit {
     private _matDialogRef: MatDialogRef<AddEditEmployeeComponent>,
     @Inject(MAT_DIALOG_DATA) public employeeData: Employee,
     private _formBuilder: FormBuilder,
-    private _matSnackBar: MatSnackBar,
     private _departmentService: DepartmentService,
-    private _employeeService: EmployeeService
+    private _employeeService: EmployeeService,
+    private _helpersService: HelpersService
   ) {
     this.action = "Add";
     this.actionButton = "Save";
@@ -63,7 +63,7 @@ export class AddEditEmployeeComponent implements OnInit {
         }
       },
       error: (error) => {
-        this.showAlert("Could not load employees.", "Error!");
+        this._helpersService.showAlert("Could not load employees.", "Error!", 5000);
       }
     })
   }
@@ -85,39 +85,31 @@ export class AddEditEmployeeComponent implements OnInit {
       this._employeeService.addEmployee$(employee).subscribe({
         next: (data) => {
           if (data.status) {
-            this.showAlert("Employee created successfully", "Success!");
+            this._helpersService.showAlert("Employee created successfully", "Success!", 5000);
             this._matDialogRef.close('created');
           } else {
-            this.showAlert("Could not add employee", "Error!");
+            this._helpersService.showAlert("Could not add employee", "Error!", 5000);
           }
         },
         error: (error) => {
-          this.showAlert("Could not add employee.", "Error!");
+          this._helpersService.showAlert("Could not add employee.", "Error!", 5000);
         }
       });
     } else {
       this._employeeService.editEmployee$(employee).subscribe({
         next: (data) => {
           if (data.status) {
-            this.showAlert("Employee updated successfully", "Success!");
+            this._helpersService.showAlert("Employee updated successfully", "Success!", 5000);
             this._matDialogRef.close('edited');
           } else {
-            this.showAlert("Could not update employee", "Error!");
+            this._helpersService.showAlert("Could not update employee", "Error!", 5000);
           }
         },
         error: (error) => {
-          this.showAlert("Could not update employee.", "Error!");
+          this._helpersService.showAlert("Could not update employee.", "Error!", 5000);
         }
       });
     }
-  }
-
-  showAlert (message: string, title: string) {
-    this._matSnackBar.open(message, title, {
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-      duration: 5000
-    })
   }
 
   ngOnInit(): void {

@@ -1,7 +1,5 @@
-import { DetailsDepartmentComponent } from './../details-department/details-department.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteDepartmentComponent } from './../delete-department/delete-department.component';
-import { AddEditDepartmentComponent } from './../add-edit-department/add-edit-department.component';
+import { HelpersService } from './../../../../core/services/helpers.service';
+import { AddEditDepartmentComponent } from '../../components/add-edit-department/add-edit-department.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentService } from './../../../../core/services/department.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { RoutingAnimation } from './../../../../shared/animations/routing.animation';
 import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { DetailsDepartmentComponent } from '../../components/details-department/details-department.component';
+import { DeleteDepartmentComponent } from '../../components/delete-department/delete-department.component';
 
 @Component({
   selector: 'fadi-list-departments',
@@ -23,7 +23,12 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor (private _titleService: Title, private _departmentService: DepartmentService, private _matDialog: MatDialog, private _matSnackBar: MatSnackBar) {
+  constructor (
+    private _titleService: Title,
+    private _departmentService: DepartmentService,
+    private _matDialog: MatDialog,
+    private _helpersService: HelpersService
+    ) {
     this._titleService.setTitle('Departments');
     this.displayedColumns = ["Id", "Name", "Actions"];
   }
@@ -41,7 +46,7 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
         }
       },
       error: (error) => {
-        this.showAlert("Could not load departments.", "Error!");
+        this._helpersService.showAlert("Could not load departments.", "Error!", 5000);
       }
     });
   }
@@ -90,14 +95,14 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
         this._departmentService.deleteDepartment$(deparment.departmentId).subscribe({
           next: (data) => {
             if (data.status) {
-              this.showAlert("Department deleted successfully.", "Success!");
+              this._helpersService.showAlert("Department deleted successfully.", "Success!", 5000);
               this.getDepartments();
             } else {
-              this.showAlert("Could not delete department.", "Error!");
+              this._helpersService.showAlert("Could not delete department.", "Error!", 5000);
             }
           },
           error: (error) => {
-            this.showAlert("Could not delete department.", "Error!");
+            this._helpersService.showAlert("Could not delete department.", "Error!", 5000);
           },
         })
       }
@@ -114,13 +119,5 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.dataDepartments.paginator = this.paginator;
-  }
-
-  showAlert (message: string, title: string) {
-    this._matSnackBar.open(message, title, {
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-      duration: 5000
-    })
   }
 }

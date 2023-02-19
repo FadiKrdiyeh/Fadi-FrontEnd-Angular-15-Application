@@ -10,7 +10,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthenticationService } from './core/authentication/authentication.service';
+
+function tokenGetter (): string {
+  return AuthenticationService.prototype.tokenGetter$();
+}
+
 
 @NgModule({
   declarations: [
@@ -23,7 +31,14 @@ import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor
     SharedModule,
     EmployeesModule,
     DepartmentsModule,
-    CoreModule
+    CoreModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:7045"],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
