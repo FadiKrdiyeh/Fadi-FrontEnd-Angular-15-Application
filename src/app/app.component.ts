@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { RoutingAnimation } from './shared/animations/routing.animation';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -13,7 +14,9 @@ export class AppComponent implements OnInit {
 
   @HostBinding('class') className = '';
 
-  constructor (private _overlayContainer: OverlayContainer) {}
+  constructor (private _title: Title, private _overlayContainer: OverlayContainer) {
+    this._title.setTitle("Fadi Krdiyeh");
+  }
 
   theme(themeMode: string) {
     this.className = themeMode;

@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -7,11 +8,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  username: string = '';
-  password: string = '';
-  fullName: string = '';
+  username: string;
+  password: string;
+  fullName: string;
+  visiblePasswordInput: boolean;
 
-  constructor () {}
+  constructor () {
+    this.username = '';
+    this.password = '';
+    this.fullName = '';
+    this.visiblePasswordInput = false;
+  }
 
   register (registerForm: NgForm) {
     console.log(registerForm);

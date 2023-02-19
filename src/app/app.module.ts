@@ -1,3 +1,4 @@
+import { httpInterceptorsProvider } from './core/interceptors/interceptors-provider';
 import { CoreModule } from './core/core.module';
 import { DepartmentsModule } from './modules/departments/departments.module';
 import { EmployeesModule } from './modules/employees/employees.module';
@@ -40,9 +41,7 @@ function tokenGetter (): string {
       }
     })
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
-  ],
+  providers: [httpInterceptorsProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

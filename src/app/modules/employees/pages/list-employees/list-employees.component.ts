@@ -53,6 +53,9 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
         }
       },
       error: (error) => {
+        // if (error) {}
+        console.log(error);
+
         this._helpersService.showAlert("Could not load employees.", "Error!", 5000);
       }
     });

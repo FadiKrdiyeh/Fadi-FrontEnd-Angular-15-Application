@@ -6,7 +6,7 @@
         <input
           matInput
           type="text"
-          name="rUsername"
+          name="psername"
           [(ngModel)]="username"
           autocomplete="off"
           required
@@ -19,12 +19,19 @@
         <mat-label>Password:</mat-label>
         <input
           matInput
-          type="password"
-          name="rPassword"
+          [type]="visiblePasswordInput ? 'text' : 'password'"
+          name="password"
           [(ngModel)]="password"
           autocomplete="off"
           required
         />
+        <mat-icon
+          matSuffix
+          color="primary"
+          style="cursor: pointer"
+          (click)="visiblePasswordInput = !visiblePasswordInput"
+          [fontIcon]="visiblePasswordInput ? 'visibility_off' : 'visibility'"
+        ></mat-icon>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -33,7 +40,7 @@
         <input
           matInput
           type="text"
-          name="rFullName"
+          name="fullName"
           [(ngModel)]="fullName"
           autocomplete="off"
           required

@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HelpersService } from './../../../../core/services/helpers.service';
 import { Component } from '@angular/core';
@@ -11,16 +12,25 @@ import { environment as env } from '../../../../../environment/environment';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
+  username: string;
+  password: string;
+  visiblePasswordInput: boolean;
 
-  constructor (private _authenticationService: AuthenticationService, private _helpersService: HelpersService, private _router: Router) {}
+  constructor (
+    private _authenticationService: AuthenticationService,
+    private _helpersService: HelpersService,
+    private _router: Router
+    ) {
+    this.username = '';
+    this.password = '';
+    this.visiblePasswordInput = false;
+  }
 
   login (loginForm: NgForm) {
     console.log(loginForm);
     const credentials = {
-      'username': loginForm.value.lUsername,
-      'password': loginForm.value.lPassword
+      'username': loginForm.value.username,
+      'password': loginForm.value.password
     }
 
     this._authenticationService.login$(credentials).subscribe({
@@ -37,6 +47,8 @@ export class LoginComponent {
         } else {
           // this.showAlert("Invalid username or password!", "Error!");
           this._helpersService.showAlert("Invalid username or password!", "Error!", 5000);
+          this.username = '';
+          this.password = '';
           // console.log("failed: ", data.value);
         }
       },
@@ -44,6 +56,8 @@ export class LoginComponent {
         // this.showAlert("Logging in failed!", "Error!");
         // this.showAlert("Invalid username or password!", "Error!");
         this._helpersService.showAlert("Invalid username or password!", "Error!", 5000);
+        this.username = '';
+        this.password = '';
         // console.log(error);
       },
     });

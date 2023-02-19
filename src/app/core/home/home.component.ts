@@ -8,9 +8,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(private _title: Title, private _authenticationService: AuthenticationService) {
+  constructor(private _title: Title) {
     this._title.setTitle("Home");
-    // let token = this._authenticationService.tokenGetter$();
-    // console.log(JSON.parse(token));
   }
 }
