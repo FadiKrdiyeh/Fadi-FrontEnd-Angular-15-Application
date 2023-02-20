@@ -38,6 +38,6 @@ export class DepartmentService {
   }
 
   countEmployees$ (departmentId: number): Observable<ApiResponse> {
-    return this._httpClient.get<ApiResponse>(`${this._departmentApiUrl}/count/${departmentId}`);
+    return this._httpClient.get<ApiResponse>(`${this._departmentApiUrl}/count/${departmentId}`, { headers: { ignoreInterceptors: 'true' } });
   }
 }

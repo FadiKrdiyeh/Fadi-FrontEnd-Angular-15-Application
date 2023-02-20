@@ -140,7 +140,7 @@
   </button>
 
   <span class="mx-2 d-flex align-items-center" *ngIf="isUserAuthenticated()">
-    {{ getUserData() | loadUsername : "Loading..." }}
+    {{ getUserData() | loadText : "Loading..." }}
     <button mat-icon-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

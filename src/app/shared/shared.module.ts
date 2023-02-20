@@ -37,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 // To work with reactive forms
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
-import { LoadUsernamePipe } from './pipes/load-username.pipe';
+import { LoadTextPipe } from './pipes/load-text.pipe';
 
 
 @NgModule({
@@ -46,7 +46,7 @@ import { LoadUsernamePipe } from './pipes/load-username.pipe';
     FooterComponent,
     NotFoundComponent,
     LoadingComponent,
-    LoadUsernamePipe
+    LoadTextPipe
   ],
   imports: [
     RouterModule,
@@ -86,7 +86,8 @@ import { LoadUsernamePipe } from './pipes/load-username.pipe';
     MatMenuModule,
     MatCardModule,
     MatTabsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    LoadTextPipe
   ]
 })
 export class SharedModule {}

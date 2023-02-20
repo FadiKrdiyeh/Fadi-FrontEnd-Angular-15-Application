@@ -11,7 +11,9 @@
       <mat-card-content>
         <p>
           Employees count in this department:
-          <span class="custom-badge">{{ employeesCount }}</span>
+          <span class="custom-badge">{{
+            employeesCount | loadText : "..."
+          }}</span>
         </p>
       </mat-card-content>
     </mat-card>
