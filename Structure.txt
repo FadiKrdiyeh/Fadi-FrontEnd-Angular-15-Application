@@ -81,6 +81,7 @@
          ∇ pipes
               load-username.pipe.ts
          ∇ validators
+              check-username-async.validator.ts
               confirmPassword.validator.ts
          shared.module.ts
     app-routing.module.ts

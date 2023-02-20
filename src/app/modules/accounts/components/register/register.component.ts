@@ -57,7 +57,6 @@ export class RegisterComponent {
 
   register () {
     console.log(this.registerForm);
-
     const user = {
       'username': this.registerForm.value.username,
       'password': this.registerForm.value.password,
