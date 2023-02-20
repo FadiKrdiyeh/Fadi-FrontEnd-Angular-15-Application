@@ -15,6 +15,7 @@
          ∇ interceptors
               http-error.interceptor.ts
               http.interceptor.ts
+              interceptors-provider.ts
          ∇ mocks
          ∇ services
               department.service.ts
@@ -30,6 +31,8 @@
                    ∇ register
                         register.component.html|scss|ts
               ∇ pages
+                   ∇ list-users
+                        list-users.component.html|scss|ts
                    ∇ login-register
                         login-register.component.html|scss|ts
               account-routing.module.ts
@@ -75,6 +78,10 @@
               credentials.ts
               department.ts
               employee.ts
+         ∇ pipes
+              load-username.pipe.ts
+         ∇ validators
+              confirmPassword.validator.ts
          shared.module.ts
     app-routing.module.ts
     app.component.html|scss|ts

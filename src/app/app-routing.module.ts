@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
-  { path: "account", loadChildren: () => import('@modules/accounts/accounts.module').then(module => module.AccountsModule), canActivate: [LoggedInGuard] },
+  { path: "account", loadChildren: () => import('@modules/accounts/accounts.module').then(module => module.AccountsModule) },
   { path: "department", loadChildren: () => import('@modules/departments/departments.module').then(module => module.DepartmentsModule), canActivate: [AuthenticationGuard] },
   { path: "employee", loadChildren: () => import('@modules/employees/employees.module').then(module => module.EmployeesModule), canActivate: [AuthenticationGuard] },
   { path: "**", component: NotFoundComponent }

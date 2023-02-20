@@ -1,3 +1,4 @@
+import { ApiResponse } from './../../shared/models/api-response';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
@@ -5,7 +6,6 @@ import { Credentials } from './../../shared/models/credential';
 import { environment as env } from './../../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResponse } from '../../shared/models/api-response';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,10 @@ export class AuthenticationService {
     this._accountApiUrl = `${this._endPoint}api/account`;
   }
 
+  register$ (user: Credentials): Observable<ApiResponse> {
+    return this._httpClient.post<ApiResponse>(`${ this._accountApiUrl }/register`, user);
+  }
+
   login$ (credentials: Credentials): Observable<ApiResponse> {
     return this._httpClient.post<ApiResponse>(`${this._accountApiUrl}/login`, credentials);
   }
@@ -30,6 +34,7 @@ export class AuthenticationService {
   logout$ (): boolean {
     if (this.isUserAuthenticated$()) {
       localStorage.removeItem(env.tokenLocalStorageKey);
+      localStorage.removeItem(env.usernameLocalStorageKey);
       this._router.navigate(['home']);
       return true;
     } else {
@@ -49,5 +54,17 @@ export class AuthenticationService {
 
   tokenGetter$ (): string {
     return localStorage.getItem(env.tokenLocalStorageKey) || "";
+  }
+
+  getUserData$ (): Observable<ApiResponse> {
+    return this._httpClient.get<ApiResponse>(`${ this._accountApiUrl }/profile`);
+  }
+
+  getUsers$ (): Observable<ApiResponse> {
+    return this._httpClient.get<ApiResponse>(`${ this._accountApiUrl }/users`);
+  }
+
+  checkUsername$ (username: string): Observable<ApiResponse> {
+    return this._httpClient.get<ApiResponse>(`${ this._accountApiUrl }/check-username`, { params: { username: username }, headers: { ignoreInterceptors: 'true' } });
   }
 }

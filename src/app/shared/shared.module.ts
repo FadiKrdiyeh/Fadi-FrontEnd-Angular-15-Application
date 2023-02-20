@@ -29,6 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // To work with http requests
 import { HttpClientModule } from '@angular/common/http';
@@ -36,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 // To work with reactive forms
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
+import { LoadUsernamePipe } from './pipes/load-username.pipe';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    LoadUsernamePipe
   ],
   imports: [
     RouterModule,
@@ -83,7 +86,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     MatMenuModule,
     MatCardModule,
     MatTabsModule,
-
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule {}

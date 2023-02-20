@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../../../../core/authentication/authentication.service';
 import { environment as env } from '../../../../../environment/environment';
+import { User } from '../../../../shared/models/user';
 
 @Component({
   selector: 'fadi-login',
@@ -27,7 +28,7 @@ export class LoginComponent {
   }
 
   login (loginForm: NgForm) {
-    console.log(loginForm);
+    // console.log(loginForm);
     const credentials = {
       'username': loginForm.value.username,
       'password': loginForm.value.password
@@ -38,8 +39,19 @@ export class LoginComponent {
         if (data.status) {
           // this.showAlert("Logged in successfully!", "Success");
           this._helpersService.showAlert("Logged in successfully!", "Success!", 5000);
-          const token = data.value;
-          localStorage.setItem(env.tokenLocalStorageKey, token);
+
+          console.log(data.value);
+
+          const user: User = {
+            'username': data.value.username,
+            'fullName': data.value.fullName,
+            'id': '',
+            'token': data.value.token
+          }
+
+          // const token = data.value;
+          localStorage.setItem(env.usernameLocalStorageKey, user.username || '');
+          localStorage.setItem(env.tokenLocalStorageKey, user.token || '');
           this._router.navigate(['/']);
           // console.log(token);
 

@@ -107,6 +107,15 @@
     <mat-icon>apartment</mat-icon>
     Departments
   </a>
+  <a
+    class="mx-2"
+    mat-button
+    [routerLink]="['account', 'users']"
+    routerLinkActive="active"
+  >
+    <mat-icon>person</mat-icon>
+    Users
+  </a>
 
   <span class="toolbar-spacer"></span>
   <!-- <div class="flex-stretch"></div> -->
@@ -131,7 +140,7 @@
   </button>
 
   <span class="mx-2 d-flex align-items-center" *ngIf="isUserAuthenticated()">
-    Username
+    {{ getUserData() | loadUsername : "Loading..." }}
     <button mat-icon-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

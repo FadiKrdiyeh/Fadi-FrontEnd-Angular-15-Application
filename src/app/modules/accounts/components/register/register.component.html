@@ -1,4 +1,4 @@
-<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+<!-- <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
   <mat-grid-list cols="1" rowHeight="80px">
     <mat-grid-tile>
       <mat-form-field appearance="fill" class="w-100 mt-5">
@@ -6,12 +6,15 @@
         <input
           matInput
           type="text"
-          name="psername"
+          name="username"
           [(ngModel)]="username"
           autocomplete="off"
           required
           autofocus
         />
+        <span *ngIf="registerForm.submitted && !username" class="text-danger"
+          >Username is required!</span
+        >
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -54,6 +57,120 @@
         class="w-50 mt-5"
         type="submit"
         [disabled]="registerForm.invalid"
+      >
+        Register
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form> -->
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <mat-grid-list cols="1" rowHeight="80px">
+    <mat-grid-tile>
+      <mat-form-field appearance="fill" class="w-100 mt-5">
+        <mat-label>Username:</mat-label>
+        <input
+          matInput
+          type="text"
+          autocomplete="off"
+          autofocus
+          formControlName="username"
+        />
+        <mat-spinner
+          *ngIf="Username.pending"
+          [diameter]="30"
+          style="float: right"
+        ></mat-spinner>
+        <span
+          *ngIf="Username.dirty && Username.touched && Username.errors?.['required']"
+          class="text-danger"
+          style="font-size: 12px"
+          >Username is required!</span
+        >
+
+        <span
+          class="text-danger"
+          style="font-size: 12px"
+          *ngIf="Username.dirty && Username.errors?.['userNameExist']"
+        >
+          Username is already exist!
+        </span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field appearance="fill" class="w-100 mt-5">
+        <mat-label>Password:</mat-label>
+        <input
+          matInput
+          [type]="visiblePasswordInput ? 'text' : 'password'"
+          formControlName="password"
+          autocomplete="off"
+        />
+        <mat-icon
+          matSuffix
+          color="primary"
+          style="cursor: pointer"
+          (click)="visiblePasswordInput = !visiblePasswordInput"
+          [fontIcon]="visiblePasswordInput ? 'visibility_off' : 'visibility'"
+        ></mat-icon>
+        <span
+          *ngIf="Password.dirty && Password.touched && Password.invalid"
+          class="text-danger"
+          style="font-size: 12px"
+          >Password is required!</span
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field appearance="fill" class="w-100 mt-5">
+        <mat-label>Confirm Password:</mat-label>
+        <input
+          matInput
+          [type]="visibleConfirmPasswordInput ? 'text' : 'password'"
+          formControlName="confirmPassword"
+          autocomplete="off"
+        />
+        <mat-icon
+          matSuffix
+          color="primary"
+          style="cursor: pointer"
+          (click)="visibleConfirmPasswordInput = !visibleConfirmPasswordInput"
+          [fontIcon]="
+            visibleConfirmPasswordInput ? 'visibility_off' : 'visibility'
+          "
+        ></mat-icon>
+        <span
+          *ngIf="ConfirmPassword.dirty && ConfirmPassword.touched && ConfirmPassword.errors?.['notMatch']"
+          class="text-danger"
+          style="font-size: 12px"
+          >Confirm password does not match with password!</span
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field appearance="fill" class="w-100 mt-5">
+        <mat-label>Full Name:</mat-label>
+        <input
+          matInput
+          type="text"
+          autocomplete="off"
+          formControlName="fullName"
+        />
+        <span
+          *ngIf="FullName.dirty && FullName.touched && FullName.invalid"
+          class="text-danger"
+          style="font-size: 12px"
+          >Full name is required!</span
+        >
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button
+        mat-raised-button
+        color="primary"
+        class="w-50 mt-5"
+        type="submit"
+        [disabled]="!registerForm.valid"
       >
         Register
         <mat-icon>add</mat-icon>

@@ -5,7 +5,6 @@ import { DepartmentService } from './../../../../core/services/department.servic
 import { MatPaginator } from '@angular/material/paginator';
 import { Department } from './../../../../shared/models/department';
 import { MatTableDataSource } from '@angular/material/table';
-import { RoutingAnimation } from './../../../../shared/animations/routing.animation';
 import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { DetailsDepartmentComponent } from '../../components/details-department/details-department.component';
@@ -14,8 +13,7 @@ import { DeleteDepartmentComponent } from '../../components/delete-department/de
 @Component({
   selector: 'fadi-list-departments',
   templateUrl: './list-departments.component.html',
-  styleUrls: ['./list-departments.component.scss'],
-  animations: [RoutingAnimation]
+  styleUrls: ['./list-departments.component.scss']
 })
 export class ListDepartmentsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[];
@@ -43,6 +41,8 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
       next: (data) => {
         if (data.status) {
           this.dataDepartments.data = data.value;
+        } else {
+          this._helpersService.showAlert("Could not load departments.", "Error!", 5000);
         }
       },
       error: (error) => {

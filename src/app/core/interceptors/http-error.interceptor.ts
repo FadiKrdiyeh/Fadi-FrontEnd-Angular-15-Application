@@ -12,7 +12,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this._loadingService.requestStarted();
+    if (!req.headers.has('ignoreInterceptors')) {
+      this._loadingService.requestStarted();
+    }
     return this.handler(next, req);
   }
 
