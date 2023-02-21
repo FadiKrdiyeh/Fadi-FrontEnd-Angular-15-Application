@@ -38,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadTextPipe } from './pipes/load-text.pipe';
+import { TagDirective } from './directives/tag.directive';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { LoadTextPipe } from './pipes/load-text.pipe';
     FooterComponent,
     NotFoundComponent,
     LoadingComponent,
-    LoadTextPipe
+    LoadTextPipe,
+    TagDirective
   ],
   imports: [
     RouterModule,
@@ -87,7 +89,8 @@ import { LoadTextPipe } from './pipes/load-text.pipe';
     MatCardModule,
     MatTabsModule,
     MatProgressSpinnerModule,
-    LoadTextPipe
+    LoadTextPipe,
+    TagDirective
   ]
 })
 export class SharedModule {}

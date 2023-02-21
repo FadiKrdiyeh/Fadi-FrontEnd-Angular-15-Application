@@ -10,9 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthenticationService } from './core/authentication/authentication.service';
 

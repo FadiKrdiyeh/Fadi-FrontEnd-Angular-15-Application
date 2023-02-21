@@ -9,6 +9,7 @@ import { AddEditEmployeeComponent } from '../add-edit-employee/add-edit-employee
   styleUrls: ['./details-employee.component.scss']
 })
 export class DetailsEmployeeComponent {
+
   constructor (@Inject(MAT_DIALOG_DATA) public employeeDetails: Employee, private _matDialogRef: MatDialogRef<AddEditEmployeeComponent>) {}
 
   editEmployee () {

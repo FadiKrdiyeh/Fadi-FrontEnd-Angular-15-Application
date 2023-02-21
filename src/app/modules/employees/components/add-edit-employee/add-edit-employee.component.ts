@@ -35,6 +35,7 @@ export class AddEditEmployeeComponent implements OnInit {
   action: string;
   actionButton: string;
   departmentsList: Department[];
+  selectedDepartmentName: any = '';
 
   constructor (
     private _matDialogRef: MatDialogRef<AddEditEmployeeComponent>,
@@ -112,6 +113,12 @@ export class AddEditEmployeeComponent implements OnInit {
     }
   }
 
+  changeDepartment () {
+    console.log(this.employeeForm.controls["departmentId"].value);
+    this.selectedDepartmentName = this.departmentsList[this.employeeForm.controls["departmentId"].value - 1].name;
+    console.log(this.selectedDepartmentName);
+  }
+
   ngOnInit(): void {
     if (this.employeeData) {
       this.employeeForm.patchValue({
@@ -126,6 +133,8 @@ export class AddEditEmployeeComponent implements OnInit {
 
       this.action = 'Edit';
       this.actionButton = 'Update';
+      this.selectedDepartmentName = this.employeeData.departmentName;
     }
+    console.log(this.employeeForm.controls["departmentId"].value);
   }
 }

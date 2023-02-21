@@ -64,7 +64,7 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
   addNewEmployee () {
     this._matDialog.open(AddEditEmployeeComponent, {
       disableClose: true,
-      width: '400px'
+      width: '600px'
     }).afterClosed().subscribe(result => {
       // console.log(result);
 
@@ -90,7 +90,7 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
     this._matDialog.open(AddEditEmployeeComponent, {
       disableClose: true,
       data: employee,
-      width: '400px'
+      width: '600px'
     }).afterClosed().subscribe(result => {
       // console.log(result);
 
