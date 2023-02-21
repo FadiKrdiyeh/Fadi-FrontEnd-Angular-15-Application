@@ -28,11 +28,22 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     this.displayedColumns = ["UserId", "Username"];
   }
 
+  /**
+   * Filter users in table
+   *
+   * @param {Event} event
+   * @memberof ListUsersComponent
+   */
   applyFilter (event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataUsers.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * Call authentication service to get all users
+   *
+   * @memberof ListUsersComponent
+   */
   getUsers () {
     this._authenticationService.getUsers$().subscribe({
       next: (data) => {
@@ -48,6 +59,11 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     })
   }
 
+  /**
+   * Show users when component initialized
+   *
+   * @memberof ListUsersComponent
+   */
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

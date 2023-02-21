@@ -73,6 +73,7 @@
               ∇ not-found
                    not-found.component.html|scss|ts
          ∇ directives
+              tag.directive.ts
          ∇ models
               api-response.ts
               credentials.ts

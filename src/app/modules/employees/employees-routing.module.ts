@@ -15,6 +15,12 @@ const routes: Routes = [
   }
 ];
 
+/**
+ * Routes for employees pages
+ *
+ * @export
+ * @class EmployeesRoutingModule
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

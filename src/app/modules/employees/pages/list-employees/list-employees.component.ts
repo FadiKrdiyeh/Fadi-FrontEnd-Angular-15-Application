@@ -37,11 +37,22 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
     this.displayedColumns = ["FirstName", "LastName", "Department", "Address", "Salary", "Phone", "Actions"];
   }
 
+  /**
+   * Filter employees in table
+   *
+   * @param {Event} event
+   * @memberof ListEmployeesComponent
+   */
   applyFilter (event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataEmployee.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * Call employee service to get all employees and show in table
+   *
+   * @memberof ListEmployeesComponent
+   */
   getEmployees () {
     this._employeeService.getEmployees$().subscribe({
       next: (data) => {
@@ -54,13 +65,18 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
       },
       error: (error) => {
         // if (error) {}
-        console.log(error);
+        // console.log(error);
 
         this._helpersService.showAlert("Could not load employees.", "Error!", 5000);
       }
     });
   }
 
+  /**
+   * Open add-edit component in dialog with add action
+   *
+   * @memberof ListEmployeesComponent
+   */
   addNewEmployee () {
     this._matDialog.open(AddEditEmployeeComponent, {
       disableClose: true,
@@ -74,6 +90,12 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
     })
   }
 
+  /**
+   * Open details component in dialog and call edit function if closed with edit button click
+   *
+   * @param {Employee} employee
+   * @memberof ListEmployeesComponent
+   */
   detailsEmployee (employee: Employee) {
     this._matDialog.open(DetailsEmployeeComponent, {
       disableClose: false,
@@ -86,6 +108,12 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Open add-edit component in dialog with edit action and show data in fields
+   *
+   * @param {Employee} employee
+   * @memberof ListEmployeesComponent
+   */
   editEmployee (employee: Employee) {
     this._matDialog.open(AddEditEmployeeComponent, {
       disableClose: true,
@@ -100,6 +128,12 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
     })
   }
 
+  /**
+   * Open delete component in dialog with delete action
+   *
+   * @param {Employee} employee
+   * @memberof ListEmployeesComponent
+   */
   deleteEmployee (employee: Employee) {
     this._matDialog.open(DeleteEmployeeComponent, {
       disableClose: true,
@@ -125,6 +159,11 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
     })
   }
 
+  /**
+   * Show employees in table when component initialized
+   *
+   * @memberof ListEmployeesComponent
+   */
   ngOnInit(): void {
     this.getEmployees();
   }

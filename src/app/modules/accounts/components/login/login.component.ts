@@ -27,6 +27,12 @@ export class LoginComponent {
     this.visiblePasswordInput = false;
   }
 
+  /**
+   * Call authentication serivce to login user and show message with result
+   *
+   * @param {NgForm} loginForm This is the user credentials from form needs to login
+   * @memberof LoginComponent
+   */
   login (loginForm: NgForm) {
     // console.log(loginForm);
     const credentials = {
@@ -40,7 +46,7 @@ export class LoginComponent {
           // this.showAlert("Logged in successfully!", "Success");
           this._helpersService.showAlert("Logged in successfully!", "Success!", 5000);
 
-          console.log(data.value);
+          // console.log(data.value);
 
           const user: User = {
             'username': data.value.username,

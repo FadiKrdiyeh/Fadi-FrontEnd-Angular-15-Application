@@ -10,6 +10,12 @@ import { LoginComponent } from './components/login/login.component';
 import { ListUsersComponent } from './pages/list-users/list-users.component';
 
 
+/**
+ * Account module for account components
+ *
+ * @export
+ * @class AccountsModule
+ */
 @NgModule({
   declarations: [
     LoginRegisterComponent,

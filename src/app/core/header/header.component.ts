@@ -24,10 +24,21 @@ export class HeaderComponent implements OnInit {
 
   constructor (private _authenticationService: AuthenticationService, private _helpersService: HelpersService) {}
 
-  isUserAuthenticated () {
+  /**
+   * Call function from authentication service
+   * Check if user is authenticated or not
+   * @return {*} {boolean}
+   * @memberof HeaderComponent
+   */
+  isUserAuthenticated (): boolean {
     return this._authenticationService.isUserAuthenticated$();
   }
 
+  /**
+   * Call function from authentication service
+   * Logout user when click on logout button
+   * @memberof HeaderComponent
+   */
   logout () {
     if (this._authenticationService.logout$()) {
       this._helpersService.showAlert("Logged out successfully.", "Success!", 5000);
@@ -36,7 +47,13 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  getUserData () {
+  /**
+   * Get username from localStorage if user authenticated and show it in the header
+   *
+   * @return {*} {string}
+   * @memberof HeaderComponent
+   */
+  getUsername (): string {
     if (this._authenticationService.isUserAuthenticated$()) {
       setTimeout(() => {
         this.username = localStorage.getItem(env.usernameLocalStorageKey) || '';
@@ -45,6 +62,12 @@ export class HeaderComponent implements OnInit {
     return this.username;
   }
 
+  /**
+   * Run when component initialized
+   * Send selected theme to parent component
+   * Show username
+   * @memberof HeaderComponent
+   */
   ngOnInit(): void {
     this.toggleControl.valueChanges.subscribe((darkMode) => {
       const darkClassName = 'darkMode';
@@ -52,6 +75,6 @@ export class HeaderComponent implements OnInit {
       // console.log(darkMode, ' ', this.toggleControl.value);
     });
 
-    this.getUserData();
+    this.getUsername();
   }
 }

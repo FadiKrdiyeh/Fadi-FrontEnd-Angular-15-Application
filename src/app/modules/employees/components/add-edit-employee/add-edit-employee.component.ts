@@ -69,6 +69,11 @@ export class AddEditEmployeeComponent implements OnInit {
     })
   }
 
+  /**
+   * Add edit employee depend on employee data if null or not
+   *
+   * @memberof AddEditEmployeeComponent
+   */
   addEditEmployee () {
     const employee: Employee = {
       employeeId: this.employeeData == null ? "00000000-0000-0000-0000-000000000000" : this.employeeData.employeeId,
@@ -113,12 +118,20 @@ export class AddEditEmployeeComponent implements OnInit {
     }
   }
 
+  /**
+   * Change tag text when change department in select box
+   *
+   * @memberof AddEditEmployeeComponent
+   */
   changeDepartment () {
-    console.log(this.employeeForm.controls["departmentId"].value);
     this.selectedDepartmentName = this.departmentsList[this.employeeForm.controls["departmentId"].value - 1].name;
-    console.log(this.selectedDepartmentName);
   }
 
+  /**
+   * Show data in fields if its an edit action
+   * Change form title button text depend on action type [add - edit]
+   * @memberof AddEditEmployeeComponent
+   */
   ngOnInit(): void {
     if (this.employeeData) {
       this.employeeForm.patchValue({
@@ -135,6 +148,5 @@ export class AddEditEmployeeComponent implements OnInit {
       this.actionButton = 'Update';
       this.selectedDepartmentName = this.employeeData.departmentName;
     }
-    console.log(this.employeeForm.controls["departmentId"].value);
   }
 }

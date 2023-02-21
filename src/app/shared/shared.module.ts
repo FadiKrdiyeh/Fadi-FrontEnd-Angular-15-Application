@@ -41,6 +41,12 @@ import { LoadTextPipe } from './pipes/load-text.pipe';
 import { TagDirective } from './directives/tag.directive';
 
 
+/**
+ * Shared module for grouping everything needs in all application in one place
+ *
+ * @export
+ * @class SharedModule
+ */
 @NgModule({
   declarations: [
     HeaderComponent,

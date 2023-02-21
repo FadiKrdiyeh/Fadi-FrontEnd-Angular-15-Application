@@ -42,19 +42,48 @@ export class RegisterComponent {
     this.visibleConfirmPasswordInput = false;
   }
 
+  /**
+   * Get username control for access in html
+   *
+   * @readonly
+   * @memberof RegisterComponent
+   */
   get Username () {
     return this.registerForm.controls['username'];
   }
+  /**
+   * Get password control for access in html
+   *
+   * @readonly
+   * @memberof RegisterComponent
+   */
   get Password () {
     return this.registerForm.controls['password'];
   }
+  /**
+   * Get confirmPassword control for access in html
+   *
+   * @readonly
+   * @memberof RegisterComponent
+   */
   get ConfirmPassword () {
     return this.registerForm.controls['confirmPassword'];
   }
+  /**
+   * Get fullName control for access in html
+   *
+   * @readonly
+   * @memberof RegisterComponent
+   */
   get FullName () {
     return this.registerForm.controls['fullName'];
   }
 
+  /**
+   * Call authentication serivce to register a new user and show message with result
+   *
+   * @memberof RegisterComponent
+   */
   register () {
     console.log(this.registerForm);
     const user = {

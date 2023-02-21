@@ -12,6 +12,12 @@ const routes: Routes = [
   { path: "users", component: ListUsersComponent, canActivate: [AuthenticationGuard] }
 ];
 
+/**
+ * Routes for account pages
+ *
+ * @export
+ * @class AccountsRoutingModule
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

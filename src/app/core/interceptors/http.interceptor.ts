@@ -3,6 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable } from 'rxjs';
 
+/**
+ * This interceptor for add attachments to request like token
+ *
+ * @export
+ * @class HttpRequestsInterceptor
+ * @implements {HttpInterceptor}
+ */
 @Injectable()
 export class HttpRequestsInterceptor implements HttpInterceptor {
   constructor (private _authenticationService: AuthenticationService) {}
@@ -15,7 +22,7 @@ export class HttpRequestsInterceptor implements HttpInterceptor {
           "Authorization": `Bearer ${ token }`
         }
       });
-      console.log("Form inter: ", request);
+      // console.log("Form inter: ", request);
 
     }
     return next.handle(request);

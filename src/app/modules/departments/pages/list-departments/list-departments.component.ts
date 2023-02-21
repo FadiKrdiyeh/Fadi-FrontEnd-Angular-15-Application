@@ -31,11 +31,22 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     this.displayedColumns = ["Id", "Name", "Actions"];
   }
 
+  /**
+   * Filter departments in table
+   *
+   * @param {Event} event
+   * @memberof ListDepartmentsComponent
+   */
   applyFilter (event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataDepartments.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * Call department service to get all departments and show in table
+   *
+   * @memberof ListDepartmentsComponent
+   */
   getDepartments () {
     this._departmentService.getDepartments$().subscribe({
       next: (data) => {
@@ -51,6 +62,11 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Open add-edit component in dialog with add action
+   *
+   * @memberof ListDepartmentsComponent
+   */
   addNewDepartment () {
     this._matDialog.open(AddEditDepartmentComponent, {
       disableClose: true,
@@ -62,6 +78,12 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Open details component in dialog and call edit function if closed with edit button click
+   *
+   * @param {Department} department
+   * @memberof ListDepartmentsComponent
+   */
   detailsDepartment (department: Department) {
     this._matDialog.open(DetailsDepartmentComponent, {
       disableClose: false,
@@ -74,6 +96,12 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Open add-edit component in dialog with edit action and show data in fields
+   *
+   * @param {Department} department
+   * @memberof ListDepartmentsComponent
+   */
   editDepartment (department: Department) {
     this._matDialog.open(AddEditDepartmentComponent, {
       disableClose: true,
@@ -86,6 +114,12 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Open delete component in dialog with delete action
+   *
+   * @param {Department} deparment
+   * @memberof ListDepartmentsComponent
+   */
   deleteDepartment(deparment: Department) {
     this._matDialog.open(DeleteDepartmentComponent, {
       disableClose: true,
@@ -109,6 +143,11 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
     })
   }
 
+  /**
+   * Show departments in table when component initialized
+   *
+   * @memberof ListDepartmentsComponent
+   */
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

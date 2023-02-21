@@ -1,5 +1,12 @@
 import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
+/**
+ * Custom directive
+ * For styling tags with dynamic colors in employees components [add - edit - details]
+ * @export
+ * @class TagDirective
+ * @implements {AfterViewInit}
+ */
 @Directive({
   selector: '[fadiTag]'
 })

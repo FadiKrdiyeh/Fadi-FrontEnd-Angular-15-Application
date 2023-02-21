@@ -18,6 +18,12 @@ const routes: Routes = [
   }
 ];
 
+/**
+ * Routes for departments pages
+ *
+ * @export
+ * @class DepartmentsRoutingModule
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

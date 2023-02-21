@@ -5,6 +5,13 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../authentication/authentication.service';
 
+/**
+ * This Guard for prevent authenticated users to visit login and register routes
+ *
+ * @export
+ * @class LoggedInGuard
+ * @implements {CanActivate}
+ */
 @Injectable({
   providedIn: 'root'
 })

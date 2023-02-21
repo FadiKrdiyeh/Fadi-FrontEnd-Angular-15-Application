@@ -20,6 +20,12 @@ export class LoginRegisterComponent implements OnInit {
     this.tabIndex = 0;
   }
 
+  /**
+   * Change url when change tab between login and register
+   *
+   * @param {MatTabChangeEvent} tabSelected The tab selected
+   * @memberof LoginRegisterComponent
+   */
   changeUrl (tabSelected: MatTabChangeEvent) {
     // console.log(tabSelected.tab.textLabel.toLowerCase());
     // console.log(this._location.);
@@ -28,6 +34,11 @@ export class LoginRegisterComponent implements OnInit {
     this._title.setTitle(tabSelected.tab.textLabel);
   }
 
+  /**
+   * Select tab depend on routing
+   * Change title
+   * @memberof LoginRegisterComponent
+   */
   ngOnInit(): void {
     // console.log(this._activatedRoute.data);
     this._activatedRoute.data.subscribe(t => {

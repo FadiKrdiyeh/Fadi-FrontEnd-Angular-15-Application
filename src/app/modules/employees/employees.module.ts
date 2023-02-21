@@ -10,6 +10,12 @@ import { DetailsEmployeeComponent } from './components/details-employee/details-
 import { DeleteEmployeeComponent } from './components/delete-employee/delete-employee.component';
 
 
+/**
+ * Employee module for employees components
+ *
+ * @export
+ * @class EmployeesModule
+ */
 @NgModule({
   declarations: [
     AddEditEmployeeComponent,

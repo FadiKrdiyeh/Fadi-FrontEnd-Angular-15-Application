@@ -14,12 +14,22 @@ export class DetailsDepartmentComponent implements OnInit {
 
   constructor (@Inject(MAT_DIALOG_DATA) public departmentDetails: Department, private _matDialogRef: MatDialogRef<AddEditDepartmentComponent>, private _departmentService: DepartmentService) {}
 
+  /**
+   * Send edit to parent component [list-departments] if dialog closed with edit button click
+   *
+   * @memberof DetailsDepartmentComponent
+   */
   editDepartment () {
     if (this.departmentDetails) {
       this._matDialogRef.close('edit');
     }
   }
 
+  /**
+   * Count employees in the selected department when dialog is openned
+   *
+   * @memberof DetailsDepartmentComponent
+   */
   ngOnInit(): void {
     this._departmentService.countEmployees$(this.departmentDetails.departmentId).subscribe({
       next: (data) => {

@@ -6,6 +6,12 @@ import { HomeComponent } from './home/home.component';
 
 
 
+/**
+ * Module for cores
+ *
+ * @export
+ * @class CoreModule
+ */
 @NgModule({
   declarations: [
     HomeComponent,

@@ -12,6 +12,11 @@ export class DetailsEmployeeComponent {
 
   constructor (@Inject(MAT_DIALOG_DATA) public employeeDetails: Employee, private _matDialogRef: MatDialogRef<AddEditEmployeeComponent>) {}
 
+  /**
+   * Send edit to parent component [list-employees] if dialog closed with edit button click
+   *
+   * @memberof DetailsEmployeeComponent
+   */
   editEmployee () {
     if (this.employeeDetails) {
       this._matDialogRef.close('edit');

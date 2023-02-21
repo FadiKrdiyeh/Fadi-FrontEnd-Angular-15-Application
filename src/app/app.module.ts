@@ -19,6 +19,12 @@ function tokenGetter (): string {
 }
 
 
+/**
+ * Main module
+ * Register and import all other modules
+ * @export
+ * @class AppModule
+ */
 @NgModule({
   declarations: [
     AppComponent

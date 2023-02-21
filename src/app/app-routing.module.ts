@@ -14,6 +14,12 @@ const routes: Routes = [
   { path: "**", component: NotFoundComponent }
 ];
 
+/**
+ * Main routes and lazy load modules
+ *
+ * @export
+ * @class AppRoutingModule
+ */
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

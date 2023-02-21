@@ -10,14 +10,26 @@ import { OverlayContainer } from '@angular/cdk/overlay';
   animations: [RoutingAnimation]
 })
 export class AppComponent implements OnInit {
-  title = 'FadiFrontEndAngularApplication';
+  title = 'Fadi Krdiyeh';
 
+  /**
+   * For changing theme
+   *
+   * @memberof AppComponent
+   */
   @HostBinding('class') className = '';
 
   constructor (private _title: Title, private _overlayContainer: OverlayContainer) {
     this._title.setTitle("Fadi Krdiyeh");
   }
 
+  /**
+   * Change theme depend on switcher in header
+   * The value come from child component
+   * If vlaue is [darkMode] will use dark theme and save it in localStorage
+   * @param {string} themeMode
+   * @memberof AppComponent
+   */
   theme(themeMode: string) {
     this.className = themeMode;
 

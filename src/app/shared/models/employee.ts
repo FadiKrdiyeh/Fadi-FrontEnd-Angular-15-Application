@@ -1,3 +1,9 @@
+/**
+ * Employee model
+ *
+ * @export
+ * @interface Employee
+ */
 export interface Employee {
   employeeId: string;
   firstName: string;

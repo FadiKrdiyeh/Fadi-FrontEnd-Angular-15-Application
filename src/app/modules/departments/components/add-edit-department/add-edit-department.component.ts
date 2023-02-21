@@ -33,13 +33,17 @@ export class AddEditDepartmentComponent implements OnInit {
     // });
   }
 
+  /**
+   * Add edit department depend on department data if null or not
+   *
+   * @memberof AddEditDepartmentComponent
+   */
   addEditDepartment () {
     const department = {
       departmentId: this.departmentId,
       name: this.departmentName
     }
     // console.log(department);
-
 
     if (this.departmentData != null) {
       this._departmentService.editDepartment$(department).subscribe({
@@ -72,11 +76,15 @@ export class AddEditDepartmentComponent implements OnInit {
     }
   }
 
+  /**
+   * Show data in fields if its an edit action
+   * Change form title button text depend on action type [add - edit]
+   * @memberof AddEditDepartmentComponent
+   */
   ngOnInit(): void {
     if (this.departmentData) {
       this.departmentId = this.departmentData.departmentId
       this.departmentName = this.departmentData.name;
-
 
       this.action = 'Edit';
       this.actionButton = 'Update';

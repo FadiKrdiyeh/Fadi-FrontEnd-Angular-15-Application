@@ -14,6 +14,12 @@ import { DeleteDepartmentComponent } from './components/delete-department/delete
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
+/**
+ * Department module for department components
+ *
+ * @export
+ * @class DepartmentsModule
+ */
 @NgModule({
   declarations: [
     AddEditDepartmentComponent,
