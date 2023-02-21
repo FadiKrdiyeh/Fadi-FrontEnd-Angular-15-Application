@@ -10,7 +10,7 @@ import { AddEditDepartmentComponent } from '../add-edit-department/add-edit-depa
   styleUrls: ['./details-department.component.scss']
 })
 export class DetailsDepartmentComponent implements OnInit {
-  employeesCount: number = 0;
+  employeesCount: string = '';
 
   constructor (@Inject(MAT_DIALOG_DATA) public departmentDetails: Department, private _matDialogRef: MatDialogRef<AddEditDepartmentComponent>, private _departmentService: DepartmentService) {}
 
@@ -24,9 +24,9 @@ export class DetailsDepartmentComponent implements OnInit {
     this._departmentService.countEmployees$(this.departmentDetails.departmentId).subscribe({
       next: (data) => {
         if (data.status) {
-          this.employeesCount = data.value;
+          this.employeesCount = data.value.toString();
         } else {
-          this.employeesCount = -1;
+          this.employeesCount = '-1';
         }
       }
     });

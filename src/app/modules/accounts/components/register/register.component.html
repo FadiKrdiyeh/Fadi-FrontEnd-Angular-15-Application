@@ -87,13 +87,19 @@
           style="font-size: 12px"
           >Username is required!</span
         >
-
         <span
           class="text-danger"
           style="font-size: 12px"
           *ngIf="Username.dirty && Username.errors?.['userNameExist']"
         >
           Username is already exist!
+        </span>
+        <span
+          class="text-danger"
+          style="font-size: 12px"
+          *ngIf="Username.dirty && Username.errors?.['usernameWhiteSpaces']"
+        >
+          Username cant include spaces or sympols!
         </span>
       </mat-form-field>
     </mat-grid-tile>
