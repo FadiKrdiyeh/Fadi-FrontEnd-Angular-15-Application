@@ -91,8 +91,8 @@ export class AddEditEmployeeComponent implements OnInit {
       this._employeeService.addEmployee$(employee).subscribe({
         next: (data) => {
           if (data.status) {
-            this._helpersService.showAlert("Employee created successfully", "Success!", 5000);
             this._matDialogRef.close('created');
+            this._helpersService.showAlert("Employee created successfully. If data not updated yet, it well be updated soon.", "Success!", 5000);
           } else {
             this._helpersService.showAlert("Could not add employee", "Error!", 5000);
           }
@@ -105,8 +105,8 @@ export class AddEditEmployeeComponent implements OnInit {
       this._employeeService.editEmployee$(employee).subscribe({
         next: (data) => {
           if (data.status) {
-            this._helpersService.showAlert("Employee updated successfully", "Success!", 5000);
             this._matDialogRef.close('edited');
+            this._helpersService.showAlert("Employee updated successfully. If data not updated yet, it well be updated soon.", "Success!", 5000);
           } else {
             this._helpersService.showAlert("Could not update employee", "Error!", 5000);
           }

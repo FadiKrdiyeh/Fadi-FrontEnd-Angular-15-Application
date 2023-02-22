@@ -1,4 +1,3 @@
-import { ActivatedRoute } from '@angular/router';
 import { HelpersService } from './../../../../core/services/helpers.service';
 import { RoutingAnimation } from './../../../../shared/animations/routing.animation';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
@@ -30,8 +29,7 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
     private _titleService: Title,
     private _employeeService: EmployeeService,
     private _matDialog: MatDialog,
-    private _helpersService: HelpersService,
-    private _activatedRoute: ActivatedRoute
+    private _helpersService: HelpersService
     ) {
     this._titleService.setTitle("Employees");
     this.displayedColumns = ["FirstName", "LastName", "Department", "Address", "Salary", "Phone", "Actions"];
@@ -142,19 +140,7 @@ export class ListEmployeesComponent implements OnInit, AfterViewInit {
       // console.log(employeeId);
 
       if (result === 'delete') {
-        this._employeeService.deleteEmployee$(employee.employeeId).subscribe({
-          next: (data) => {
-            if (data.status) {
-              this._helpersService.showAlert("Employee deleted successfully.", "Success!", 5000);
-              this.getEmployees();
-            } else {
-              this._helpersService.showAlert("Could not delete employee.", "Error!", 5000);
-            }
-          },
-          error: (error) => {
-            this._helpersService.showAlert("Could not delete employee.", "Error!", 5000);
-          }
-        })
+        this.getEmployees();
       }
     })
   }

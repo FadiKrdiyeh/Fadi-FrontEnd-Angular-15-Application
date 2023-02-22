@@ -126,19 +126,7 @@ export class ListDepartmentsComponent implements OnInit, AfterViewInit {
       data: deparment
     }).afterClosed().subscribe(result => {
       if (result == 'delete') {
-        this._departmentService.deleteDepartment$(deparment.departmentId).subscribe({
-          next: (data) => {
-            if (data.status) {
-              this._helpersService.showAlert("Department deleted successfully.", "Success!", 5000);
-              this.getDepartments();
-            } else {
-              this._helpersService.showAlert("Could not delete department.", "Error!", 5000);
-            }
-          },
-          error: (error) => {
-            this._helpersService.showAlert("Could not delete department.", "Error!", 5000);
-          },
-        })
+        this.getDepartments();
       }
     })
   }

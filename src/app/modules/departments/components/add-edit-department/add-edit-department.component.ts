@@ -49,8 +49,8 @@ export class AddEditDepartmentComponent implements OnInit {
       this._departmentService.editDepartment$(department).subscribe({
         next: (data) => {
           if (data.status) {
-            this._helpersService.showAlert("Department updated successfully.", "Success!", 5000);
             this._matDialogRef.close("edited");
+            this._helpersService.showAlert("Department updated successfully. If data not updated yet, it well be updated soon.", "Success!", 5000);
           } else {
             this._helpersService.showAlert("Could not update department.", "Error!", 5000);
           }
@@ -63,8 +63,8 @@ export class AddEditDepartmentComponent implements OnInit {
       this._departmentService.addDepartment$(department).subscribe({
         next: (data) => {
           if (data.status) {
-            this._helpersService.showAlert("Department created successfully.", "Success!", 5000)
             this._matDialogRef.close("created");
+            this._helpersService.showAlert("Department created successfully. If data not updated yet, it well be updated soon.", "Success!", 5000)
           } else {
             this._helpersService.showAlert("Could not create department", "Error!", 5000);
           }
